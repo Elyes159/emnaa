@@ -16,16 +16,7 @@ const nodemailer = require("nodemailer")
 
 
 
-router.post('/create',async (req,res)=>{
-    try{
-        data = req.body;
-        usr = new User(data);
-        savedUser =await usr.save();
-        res.status(200).send(savedUser);
-    }catch(error){
-        res.status(400).send(error)
-    }
-})
+
 router.post('/register',async (req,res)=>{
     try{
         data = req.body;
@@ -70,47 +61,14 @@ router.post('/login',async (req,res)=>{
 })
 
 
-router.get('/readall',async(req,res)=>{
-    try{
-        users =await User.find()
-        res.send(users)
-    }catch(error){
-        res.send(error)
-    }
-});
-
-router.get('/getById/:id',async(req,res)=>{
-try{
-    myid = req.params.id
-    user = await User.findOne({_id :myid})
-    res.send(user)
-}catch(error){
-    res.send(error);
-}
-});
 
 
-router.delete('/delete/:id',async(req,res)=>{
-    try{
-        myid = req.params.id
-        deletedUser = await User.findOneAndDelete({_id : myid})
-        res.send("user with this id : "+myid+"  is deleted !")
-    }catch(error){
-        res.send(error)
-    }
-});
 
 
-router.put('/update/:id',async(req,res)=>{
-    try{
-        myid = req.params.id
-        dataUpdated = req.body;
-        deletedUser = await User.findOneAndUpdate({_id : myid},dataUpdated)
-        res.send("user with this id : "+myid+"  is updated !")
-    }catch(error){
-        res.send(error)
-    }
-});
+
+
+
+
 router.put('/updatePass/:id', async (req, res) => {
     try {
         const myid = req.params.id;
@@ -271,3 +229,9 @@ async function updateUserPassword(email, newPassword) {
 
 
 module.exports = router;
+
+
+
+
+
+
